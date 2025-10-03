@@ -4,13 +4,16 @@
 #include <vector>
 #include <list>
 #include <forward_list>
-
+#include <iterator>
+#include <deque>
 using std::cin;
 using std::cout;
 using std::endl;
 
 template<typename T>
 void vector_info(const std::vector<T>& vec); 
+template<typename T>
+void deque_info(const std::deque<T>& deque);
 
 template<typename T>
 void PrintList(const std::list<T>& List);
@@ -31,9 +34,11 @@ template<typename T>
 void EraseForwardList(std::forward_list<T>& FList,int index);
 
 //#define STL_ARRAY
-//#define STL_VECTOR
+#define STL_VECTOR
+
 //#define STL_LIST
-#define STL_FORWARD_LIST
+//#define STL_FORWARD_LIST
+#define STL_DEQUE
 
 #define tab "\t"
 #define delimiter "\n---------------------------------------------\n"
@@ -142,69 +147,140 @@ void main()
     cout << endl;
     vector_info(vec);
 
-    //Удаление элементов в заданном диапазоне
-    int index2;
-    int index3;
-    cout << "Введите начало и конец диапазона для удаления элементов: ";
-    cin >> index2 >> index3;
-    vec.erase(vec.begin() + index2, vec.begin() + index3);
-    cout << endl;
-    for (int i : vec)
-    {
-        cout << i << tab;
+    ////Удаление элементов в заданном диапазоне
+    //int index2;
+    //int index3;
+    //cout << "Введите начало и конец диапазона для удаления элементов: ";
+    //cin >> index2 >> index3;
+    //vec.erase(vec.begin() + index2, vec.begin() + index3);
+    //cout << endl;
+    //for (int i : vec)
+    //{
+    //    cout << i << tab;
 
-    }
-    cout << endl;
-    vector_info(vec);
+    //}
+    //cout << endl;
+    //vector_info(vec);
+
+
 
 #endif // STL_VECTOR
 
 #ifdef STL_LIST
 
-    std::list<int> List = {5,15,23,42,95,17,1};
-    PrintList(List);
-    int Index;
-    int Value;
+    //std::list<int> List = {5,15,23,42,95,17,1};
+    //PrintList(List);
+    //int Index;
+    //int Value;
+    //cout << endl;
+    //cout << "Введите индекс, куда вставить новый элемент: ";
+    //cin >> Index;
+    //cout << "Введите значение нового элемента: ";
+    //cin >> Value;
+    //InsertList(List,Index,Value);
+    //PrintList(List);
+    //cout << endl;
+    /////////////////////////////////,
+    //cout << endl;
+    //std::list<int> List2 = {11,5,99,6,77,18,35,14 };
+    //PrintList(List2);
+    //int Index2;
+    //cout << "\nВведите индекс по которому вы хотите удалить элемент: "; cin >> Index2;
+    //EraseList(List2, Index2);
+    //PrintList(List2);
+
+    std::list<int> list = { 3,5,8,13,21,34,55,89 };
+    list.push_front(2);
+    for (std::list<int>:: iterator it = list.begin(); it != list.end(); ++it)
+    {
+        cout << *it << tab;
+    }
     cout << endl;
-    cout << "Введите индекс, куда вставить новый элемент: ";
-    cin >> Index;
-    cout << "Введите значение нового элемента: ";
-    cin >> Value;
-    InsertList(List,Index,Value);
-    PrintList(List);
+    for (std::list<int>::reverse_iterator it = list.rbegin(); it != list.rend(); ++it)
+    {
+        cout << *it << tab;
+    }
     cout << endl;
-    ///////////////////////////////,
-    cout << endl;
-    std::list<int> List2 = {11,5,99,6,77,18,35,14 };
-    PrintList(List2);
-    int Index2;
-    cout << "\nВведите индекс по которому вы хотите удалить элемент: "; cin >> Index2;
-    EraseList(List2, Index2);
-    PrintList(List2);
+
+    int index;
+    int value;
+    cout << "Введите индекс добавляемлого элемента: "; cin >> index;
+    cout << "Введите значение добавляемого элемента: "; cin >> value;
+   // list.insert(list.begin() + index, value);//списки не поддерживают арифметику указателей
+    std::list<int> ::iterator position = list.begin();
+    
+    // (int i = 0; i < index; ++i)position++;
+   // std::advance(position, index); //функция смещает итератор вправо на заданное количество элементов
+    //list.insert(position, value);
+    std::list<int>::reverse_iterator r_position = list.rbegin();
+    std::advance(r_position, list.size() - index);
+    position = r_position.base();
+    list.insert(position, value);
+    for (int i : list) cout << i << tab; cout << endl;
+
+
+    cout << "Введите индекс удаляемого элемента: "; cin >> index;
+    position = list.begin ();
+    std::advance(position, index);
+    list.erase(position);
+    for (int i : list) cout << i << tab; cout << endl;
 
 #endif // STL_LIST
 
 #ifdef STL_FORWARD_LIST
 
-    std::forward_list<int> flist = { 5,17,19,71,2,8,5,21 };
-    PrintForwardList(flist);
+    //std::forward_list<int> flist = { 5,17,19,71,2,8,5,21 };
+    //PrintForwardList(flist);
+    //int Value;
+    //int Index;
+    //cout << "Введите индекс элемента куда вы хотите вставить элемент: ";
+    //cin >> Index;
+    //cout << "Введите значение элемента для вставки: "; cin >> Value;
+    //InsertForwardList(flist, Index, Value);
+    //PrintForwardList(flist);
+    //////////////////////////
+    //cout << endl;
+    //std::forward_list<int> flist2 = {2,12,42,3,15,18};
+    //PrintForwardList(flist2);
+    //int Index2;
+    //cout << "Введите индекс по которму вы хотите удалить элемент: "; cin >> Index2;
+    //EraseForwardList(flist2,Index2);
+    //PrintForwardList(flist2);
+    
+    std::forward_list<int> list = { 3,5,8,13,21 };
+    list.push_front(2);
+    for (std::forward_list<int>::iterator it = list.begin(); it != list.end(); ++it)
+        cout << *it << tab;
+    cout << endl;
     int Value;
     int Index;
     cout << "Введите индекс элемента куда вы хотите вставить элемент: ";
     cin >> Index;
     cout << "Введите значение элемента для вставки: "; cin >> Value;
-    InsertForwardList(flist, Index, Value);
-    PrintForwardList(flist);
-    ////////////////////////
-    cout << endl;
-    std::forward_list<int> flist2 = {2,12,42,3,15,18};
-    PrintForwardList(flist2);
-    int Index2;
-    cout << "Введите индекс по которму вы хотите удалить элемент: "; cin >> Index2;
-    EraseForwardList(flist2,Index2);
-    PrintForwardList(flist2);
+   // std::forward_list<int>::iterator position = list.begin();
+    std::forward_list<int>::iterator position = list.before_begin();
+    std::advance(position, Index - 1);
+    list.insert_after(position, Value);
+    list.insert_after(list.begin(), 1352);
+    PrintForwardList(list);
+    //for (int i : list)cout << i << tab; cout << endl;
+
 
 #endif // STL_FORWARD_LIST
+#ifdef STL_DEQUE
+
+    std::deque<int> deque = { 3,5,8,13,21 };
+    deque.push_back(34);
+    deque.push_front(2);
+
+    deque_info(deque);
+    deque.assign(vec.begin()+3, vec.end()-3);
+    for (int i : deque)cout << i << tab;
+    cout << endl;
+
+    /*std::vector<int> vec;
+    cout<< typeid(vec.data()).name()<<endl;*/
+#endif // STL_DEQUE
 
   
 }
@@ -216,6 +292,14 @@ void vector_info(const std::vector<T>& vec)
     cout << "MaxSize:\t" << vec.max_size() << endl;//от типа данных и целевой арх
     cout << "Capacity:\t" << vec.capacity() << endl;//объем зарезервированной памяти
 
+}
+
+template<typename T>
+void deque_info(const std::deque<T>& deque)
+{
+
+    cout << "Size:\t" << deque.size() << endl;
+    cout << "MaxSize:\t" << deque.max_size() << endl;
 }
 
 template<typename T>
@@ -262,7 +346,7 @@ void EraseList(std::list<T>& List, int index)
 template<typename T>
 void PrintForwardList(const std::forward_list<T>& Flist)
 {
-    for (const auto& i : Flist)
+    for (const T& i : Flist)
     {
         cout << i << " ";
 

@@ -1,4 +1,4 @@
-//SequenceContainers
+ï»¿//SequenceContainers
 #include <iostream>
 #include <array>
 #include <vector>
@@ -10,7 +10,7 @@ using std::cout;
 using std::endl;
 
 template<typename T>
-void vector_info(const std::vector<T>& vec);
+void vector_info(const std::vector<T>& vec); 
 
 template<typename T>
 void PrintList(const std::list<T>& List);
@@ -120,8 +120,8 @@ void main()
     int value;
     do
     {
-        cout << "Ââåäèòå èíäåêñ äîáàâëÿåìîãî ýëåìåíòà: "; cin >> index;
-        cout << "Ââåäèòå çíà÷åíèå äîáàâëÿåìîãî ýëåìåíòà: "; cin >> value;
+        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: "; cin >> index;
+        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: "; cin >> value;
     } while (index > vec.capacity());
     
     vec.insert(vec.begin()+index,value);
@@ -129,9 +129,9 @@ void main()
 
     cout << endl;
 
-    //Óäàëåíèå ýëåìåíòà ïî óêàçàííîìó èíäåêñó
+    //Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° Ð¿Ð¾ ÑƒÐºÐ°Ð·Ð°Ð½Ð½Ð¾Ð¼Ñƒ Ð¸Ð½Ð´ÐµÐºÑÑƒ
     int index;
-    cout << "Ââåäèòå èíäåêñ óäàëÿåìîãî ýëåìåíòà: "; cin >> index;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ ÑƒÐ´Ð°Ð»ÑÐµÐ¼Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: "; cin >> index;
     vec.erase(vec.begin() + index);
     cout << endl;
     for (int i : vec)
@@ -142,10 +142,10 @@ void main()
     cout << endl;
     vector_info(vec);
 
-    //Óäàëåíèå ýëåìåíòîâ â çàäàííîì äèàïàçîíå
+    //Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð² Ð·Ð°Ð´Ð°Ð½Ð½Ð¾Ð¼ Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ðµ
     int index2;
     int index3;
-    cout << "Ââåäèòå íà÷àëî è êîíåö äèàïàçîíà äëÿ óäàëåíèÿ ýëåìåíòîâ: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¸ ÐºÐ¾Ð½ÐµÑ† Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ð° Ð´Ð»Ñ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð²: ";
     cin >> index2 >> index3;
     vec.erase(vec.begin() + index2, vec.begin() + index3);
     cout << endl;
@@ -166,9 +166,9 @@ void main()
     int Index;
     int Value;
     cout << endl;
-    cout << "Ââåäèòå èíäåêñ, êóäà âñòàâèòü íîâûé ýëåìåíò: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ, ÐºÑƒÐ´Ð° Ð²ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ð½Ð¾Ð²Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚: ";
     cin >> Index;
-    cout << "Ââåäèòå çíà÷åíèå íîâîãî ýëåìåíòà: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð½Ð¾Ð²Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: ";
     cin >> Value;
     InsertList(List,Index,Value);
     PrintList(List);
@@ -178,7 +178,7 @@ void main()
     std::list<int> List2 = {11,5,99,6,77,18,35,14 };
     PrintList(List2);
     int Index2;
-    cout << "\nÂâåäèòå èíäåêñ ïî êîòîðîìó âû õîòèòå óäàëèòü ýëåìåíò: "; cin >> Index2;
+    cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ Ð¿Ð¾ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¼Ñƒ Ð²Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚: "; cin >> Index2;
     EraseList(List2, Index2);
     PrintList(List2);
 
@@ -190,9 +190,9 @@ void main()
     PrintForwardList(flist);
     int Value;
     int Index;
-    cout << "Ââåäèòå èíäåêñ ýëåìåíòà êóäà âû õîòèòå âñòàâèòü ýëåìåíò: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° ÐºÑƒÐ´Ð° Ð²Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð²ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚: ";
     cin >> Index;
-    cout << "Ââåäèòå çíà÷åíèå ýëåìåíòà äëÿ âñòàâêè: "; cin >> Value;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° Ð´Ð»Ñ Ð²ÑÑ‚Ð°Ð²ÐºÐ¸: "; cin >> Value;
     InsertForwardList(flist, Index, Value);
     PrintForwardList(flist);
     ////////////////////////
@@ -200,7 +200,7 @@ void main()
     std::forward_list<int> flist2 = {2,12,42,3,15,18};
     PrintForwardList(flist2);
     int Index2;
-    cout << "Ââåäèòå èíäåêñ ïî êîòîðìó âû õîòèòå óäàëèòü ýëåìåíò: "; cin >> Index2;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ Ð¿Ð¾ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¼Ñƒ Ð²Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚: "; cin >> Index2;
     EraseForwardList(flist2,Index2);
     PrintForwardList(flist2);
 
@@ -212,9 +212,9 @@ void main()
 template<typename T>
 void vector_info(const std::vector<T>& vec)
 {
-    cout << "Size:\t" << vec.size() << endl;//ôàêòè÷åñêèé ðàçìåð âåêòîðà,ïîêàçûâàþùèé ñêîëüêî ýëåìåíòîâ õðàíèò âåêòîð
-    cout << "MaxSize:\t" << vec.max_size() << endl;//îò òèïà äàííûõ è öåëåâîé àðõ
-    cout << "Capacity:\t" << vec.capacity() << endl;//îáúåì çàðåçåðâèðîâàííîé ïàìÿòè
+    cout << "Size:\t" << vec.size() << endl;//Ñ„Ð°ÐºÑ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð°,Ð¿Ð¾ÐºÐ°Ð·Ñ‹Ð²Ð°ÑŽÑ‰Ð¸Ð¹ ÑÐºÐ¾Ð»ÑŒÐºÐ¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ Ð²ÐµÐºÑ‚Ð¾Ñ€
+    cout << "MaxSize:\t" << vec.max_size() << endl;//Ð¾Ñ‚ Ñ‚Ð¸Ð¿Ð° Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¸ Ñ†ÐµÐ»ÐµÐ²Ð¾Ð¹ Ð°Ñ€Ñ…
+    cout << "Capacity:\t" << vec.capacity() << endl;//Ð¾Ð±ÑŠÐµÐ¼ Ð·Ð°Ñ€ÐµÐ·ÐµÑ€Ð²Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ð¹ Ð¿Ð°Ð¼ÑÑ‚Ð¸
 
 }
 
@@ -234,7 +234,7 @@ void InsertList(std::list<T>& List,int index,const T& value)
 {
     if (index < 0 || index > List.size())
     {
-        std::cerr << "Íåêîððåêòíàÿ ïîçèöèÿ âñòàâêè." << endl;
+        std::cerr << "ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð°Ñ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð²ÑÑ‚Ð°Ð²ÐºÐ¸." << endl;
         return;
     }
     typename std::list <T>::iterator iter = List.begin();
@@ -248,7 +248,7 @@ void EraseList(std::list<T>& List, int index)
 {
     if (index < 0 || index > List.size())
     {
-        std::cerr<<"Îøèáêà! Èíäåêñ âíå äîïóñòèìîãî äèàïàçîíà"<<endl;
+        std::cerr<<"ÐžÑˆÐ¸Ð±ÐºÐ°! Ð˜Ð½Ð´ÐµÐºÑ Ð²Ð½Ðµ Ð´Ð¾Ð¿ÑƒÑÑ‚Ð¸Ð¼Ð¾Ð³Ð¾ Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ð°"<<endl;
         return;
     }
     std::list <int>::iterator iter = List.begin();
@@ -281,7 +281,7 @@ void InsertForwardList(std::forward_list<T>& FList, int index,const T &value)
 
     if (index < 0 || index > count)
     {
-        std::cerr << "Èíäåêñ âíå äèàïàçîíà!" << endl;
+        std::cerr << "Ð˜Ð½Ð´ÐµÐºÑ Ð²Ð½Ðµ Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ð°!" << endl;
         return;
     }
     typename std::forward_list<T>::iterator iter1 = FList.before_begin();
@@ -306,7 +306,7 @@ void EraseForwardList(std::forward_list<T>& FList, int index)
 
     if (index < 0 || index >= count)
     {
-        std::cerr << "Èíäåêñ âíå äèàïàçîíà!" << std::endl;
+        std::cerr << "Ð˜Ð½Ð´ÐµÐºÑ Ð²Ð½Ðµ Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ð°!" << std::endl;
         return;
     }
     

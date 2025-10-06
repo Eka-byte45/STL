@@ -1,10 +1,12 @@
 ﻿#include<iostream>
 #include<map>
 #include<list>
+#include<set>
 using  std::cin;
 using  std::cout;
 using  std::endl;
-#define STL_MAP
+//#define STL_MAP
+#define STL_SET
 #define tab "\t"
 #define delimetr "\n-------------------------------------\n"
 void main()
@@ -50,23 +52,33 @@ void main()
 	for (std::map<std::string,std::list<std::string>>::iterator it= dictionary.begin();it!=dictionary.end();++it)
 	{
 		cout << (*it).first << ": ";
-		/*for (const std::string& item : (*it).second)
+		for (std::string item : (*it).second)
 		{
 
 			cout << item << ", ";
 
-		}*/
-		for (std::list<std::string>::iterator violation = it->second.begin(); violation != it->second.end(); ++violation)
+		}
+		/*for (std::list<std::string>::iterator violation = it->second.begin(); violation != it->second.end(); ++violation)
 		{
 			cout << *violation<<" ";
-		}
+		}*/
 
 		cout << endl;
 	} 
 
-
-
-
 #endif //  STL_MAP
+#ifdef STL_SET
+
+	//set - это контейнер, который хранит данные в виде бинарного дерева поиска
+	//в отличие от map, каждым элементом set является одно значение,но часто
+	//говорят, что set совмещает ключ и значение.
+	std::set<int> set = { 1024,512,2048,128,3072,768 };
+	for (std::set<int>::iterator it = set.begin(); it != set.end(); ++it)
+	{
+		cout << *it << tab;
+	}
+#endif // STL_SET
+
+
 
 }

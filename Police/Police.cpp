@@ -1,4 +1,4 @@
-
+п»ї
 #include<iostream>
 #include<map>
 #include<string>
@@ -28,20 +28,20 @@ void main()
 
 	std::map<std::string, std::vector<std::string>> DataBase = 
 	{
-		{"А123АА77",{"Превышение разрешённого ограничения скорости более чем на 20 км/ч","Стоянка в местах, запрещённых правилами дорожного движения ","Игнорирование сигналов светофоров или регулировщика"}},
-		{"А100BB33",{"Нарушение порядка парковки","Неправильный проезд регулируемого или нерегулируемого перекрестка"}},
-		{"А444АА74",{"Проезд железнодорожного переезда при закрытом шлагбауме или сигнале запрета"}},
-		{"А014АА30",{"Обгон в зонах запрещающих знаков или дорожной разметки"}},
+		{"Рђ123РђРђ77",{"РџСЂРµРІС‹С€РµРЅРёРµ СЂР°Р·СЂРµС€С‘РЅРЅРѕРіРѕ РѕРіСЂР°РЅРёС‡РµРЅРёСЏ СЃРєРѕСЂРѕСЃС‚Рё Р±РѕР»РµРµ С‡РµРј РЅР° 20 РєРј/С‡","РЎС‚РѕСЏРЅРєР° РІ РјРµСЃС‚Р°С…, Р·Р°РїСЂРµС‰С‘РЅРЅС‹С… РїСЂР°РІРёР»Р°РјРё РґРѕСЂРѕР¶РЅРѕРіРѕ РґРІРёР¶РµРЅРёСЏ ","РРіРЅРѕСЂРёСЂРѕРІР°РЅРёРµ СЃРёРіРЅР°Р»РѕРІ СЃРІРµС‚РѕС„РѕСЂРѕРІ РёР»Рё СЂРµРіСѓР»РёСЂРѕРІС‰РёРєР°"}},
+		{"Рђ100BB33",{"РќР°СЂСѓС€РµРЅРёРµ РїРѕСЂСЏРґРєР° РїР°СЂРєРѕРІРєРё","РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РїСЂРѕРµР·Рґ СЂРµРіСѓР»РёСЂСѓРµРјРѕРіРѕ РёР»Рё РЅРµСЂРµРіСѓР»РёСЂСѓРµРјРѕРіРѕ РїРµСЂРµРєСЂРµСЃС‚РєР°"}},
+		{"Рђ444РђРђ74",{"РџСЂРѕРµР·Рґ Р¶РµР»РµР·РЅРѕРґРѕСЂРѕР¶РЅРѕРіРѕ РїРµСЂРµРµР·РґР° РїСЂРё Р·Р°РєСЂС‹С‚РѕРј С€Р»Р°РіР±Р°СѓРјРµ РёР»Рё СЃРёРіРЅР°Р»Рµ Р·Р°РїСЂРµС‚Р°"}},
+		{"Рђ014РђРђ30",{"РћР±РіРѕРЅ РІ Р·РѕРЅР°С… Р·Р°РїСЂРµС‰Р°СЋС‰РёС… Р·РЅР°РєРѕРІ РёР»Рё РґРѕСЂРѕР¶РЅРѕР№ СЂР°Р·РјРµС‚РєРё"}},
 	};
 
 	std::string CarNumber;
 	std::string ViolationDescription;
 
-	cout << "Введите регистрационный номер автомобиля: "; cin >> CarNumber;
-	cout << "Введите описание правонарушения: "; 
+	cout << "Р’РІРµРґРёС‚Рµ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ Р°РІС‚РѕРјРѕР±РёР»СЏ: "; cin >> CarNumber;
+	cout << "Р’РІРµРґРёС‚Рµ РѕРїРёСЃР°РЅРёРµ РїСЂР°РІРѕРЅР°СЂСѓС€РµРЅРёСЏ: "; 
 	std::cin.ignore();
 	std::getline(cin, ViolationDescription);
-	//Добавление в базу данных нового правонарушителя или же добавление к существующему
+	//Р”РѕР±Р°РІР»РµРЅРёРµ РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… РЅРѕРІРѕРіРѕ РїСЂР°РІРѕРЅР°СЂСѓС€РёС‚РµР»СЏ РёР»Рё Р¶Рµ РґРѕР±Р°РІР»РµРЅРёРµ Рє СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРјСѓ
 	std::map<std::string, std::vector<std::string>>::iterator it;
 	it = DataBase.find(CarNumber);
 
@@ -55,47 +55,47 @@ void main()
 	}
 
 
-	////Печать всей базы
+	////РџРµС‡Р°С‚СЊ РІСЃРµР№ Р±Р°Р·С‹
 	for (std::map<std::string, std::vector<std::string>>::iterator entry = DataBase.begin(); entry != DataBase.end(); ++entry)
 	{
-		cout << "Автомобиль №: " << entry->first << endl;
+		cout << "РђРІС‚РѕРјРѕР±РёР»СЊ в„–: " << entry->first << endl;
 		for (std::vector<std::string> ::iterator violation = entry->second.begin(); violation != entry->second.end(); ++violation)
 		{
-			cout << "Нарушение: " << *violation << endl;
+			cout << "РќР°СЂСѓС€РµРЅРёРµ: " << *violation << endl;
 		}
 		cout << endl;
 	}
 	
-	//Печать данных по заданному номеру 
-	cout << "Введите номер машины: "; cin >> CarNumber;
+	//РџРµС‡Р°С‚СЊ РґР°РЅРЅС‹С… РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ РЅРѕРјРµСЂСѓ 
+	cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РјР°С€РёРЅС‹: "; cin >> CarNumber;
 
 	std::map<std::string, std::vector<std::string>>::iterator it;
 	it = DataBase.find(CarNumber);
 	if (it != DataBase.end())
 	{
-		std::cout << "Автомобиль №: " << it->first << endl;
+		std::cout << "РђРІС‚РѕРјРѕР±РёР»СЊ в„–: " << it->first << endl;
 		for (const std::string &violation : it->second)
 		{
-			cout << "Нарушение: " << violation << endl;
+			cout << "РќР°СЂСѓС€РµРЅРёРµ: " << violation << endl;
 		}
 		cout << endl;
 	}
 	else
 	{
-		cout << "Автомобиль с номером " << CarNumber << " не найден в базе данных." << endl;
+		cout << "РђРІС‚РѕРјРѕР±РёР»СЊ СЃ РЅРѕРјРµСЂРѕРј " << CarNumber << " РЅРµ РЅР°Р№РґРµРЅ РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С…." << endl;
 	}
 	
-	//Печать данных по диапазону номеров
+	//РџРµС‡Р°С‚СЊ РґР°РЅРЅС‹С… РїРѕ РґРёР°РїР°Р·РѕРЅСѓ РЅРѕРјРµСЂРѕРІ
 	std::string Start;
 	std::string End;
 	std::map<std::string, std::vector<std::string>>::iterator LowerBoundIterator;
 	std::map<std::string, std::vector<std::string>>::iterator UpperBoundIterator;
 
-	cout << "Введите начало диапазона: ";
+	cout << "Р’РІРµРґРёС‚Рµ РЅР°С‡Р°Р»Рѕ РґРёР°РїР°Р·РѕРЅР°: ";
 	std::cin.ignore();
 	std::getline(cin,Start);
 
-	cout << "Введите конец диапазона: ";
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕРЅРµС† РґРёР°РїР°Р·РѕРЅР°: ";
 	std::getline(cin,End);
 
 	LowerBoundIterator = DataBase.lower_bound(Start);
@@ -103,24 +103,24 @@ void main()
 
 	for (std::map<std::string, std::vector<std::string>>::iterator it = LowerBoundIterator; it != UpperBoundIterator; ++it)
 	{
-		cout << "Автомобиль №: " << it->first << endl;
+		cout << "РђРІС‚РѕРјРѕР±РёР»СЊ в„–: " << it->first << endl;
 		for (const std::string& violation : it->second)
 		{
-			cout << "Нарушение: " << violation << endl;
+			cout << "РќР°СЂСѓС€РµРЅРёРµ: " << violation << endl;
 		}
 		cout << endl;
 	}
 
-	//Запись информации в файл
+	//Р—Р°РїРёСЃСЊ РёРЅС„РѕСЂРјР°С†РёРё РІ С„Р°Р№Р»
 	std::string filename;
-	cout << "Введите имя файла: ";
+	cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р°: ";
 	
 	std::getline(cin, filename);
 	std::cin.ignore();
 	std::ofstream file(filename);
 	if (!file.is_open())
 	{
-		std::cerr<<"Ошибка открытия файла для записи"<<endl;
+		std::cerr<<"РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° РґР»СЏ Р·Р°РїРёСЃРё"<<endl;
 	}
 
 	for (std::map<std::string, std::vector<std::string>>::iterator it = DataBase.begin(); it != DataBase.end(); ++it)
@@ -134,7 +134,7 @@ void main()
 
 	}
 	file.close();
-	cout << "Данные успешно сохранены в файл!" << filename << endl;
+	cout << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹ РІ С„Р°Р№Р»!" << filename << endl;
 
 	return;
 }

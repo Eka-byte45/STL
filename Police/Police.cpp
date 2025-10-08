@@ -4,6 +4,7 @@
 #include<string>
 //#include<vector>
 #include<fstream>
+#include<sstream>
 
 using std::cout;
 using std::cin;
@@ -62,7 +63,22 @@ std::ostream& operator<<(std::ostream& os, const Crime& obj)
 	os << std::left;
 	return os << VIOLATIONS.at(obj.get_violation()) << "\t" << obj.get_place();
 }
+std::ofstream& operator <<(std::ofstream& ofs, const Crime& obj)
+{
+	 ofs << obj.get_violation() << " " << obj.get_place();
+	 return ofs;
+}
+std::stringstream& operator>>(std::stringstream& ifs, Crime& obj)
+{
+	int violation;
+	ifs >> violation;
+	std::string place;
+	std::getline(ifs, place);
+	obj.set_violation(violation);
+	obj.set_place(place);
+	return ifs;
 
+}
 void print(const std::map<std::string, std::list<Crime>>& base)
 {
 	for (std::map<std::string, std::list<Crime>>::const_iterator plate = base.begin(); plate != base.end(); ++plate)
@@ -81,18 +97,52 @@ void save(const std::map<std::string, std::list<Crime>>& base, const std::string
 	std::ofstream fout(filename);
 	for (std::map<std::string, std::list<Crime>>::const_iterator plate = base.begin(); plate != base.end(); ++plate)
 	{
-		fout << plate->first << ":\n";
+		fout << plate->first << ":";
 		for (std::list<Crime>::const_iterator violation = plate->second.begin(); violation != plate->second.end(); ++violation)
 		{
-			fout << "\t" << *violation << endl;
+			fout << *violation <<",";
 		}
-		fout << delimetr << endl;
+		fout << endl;
 	}
 	fout.close();
 	std::string cmd = "notepad ";
 	cmd += filename;
 	system(cmd.c_str());
 		
+}
+std::map<std::string, std::list<Crime>>load(const std::string& filename)
+{
+	std::map<std::string, std::list<Crime>> base;
+	std::ifstream fin(filename);
+	if (fin.is_open())
+	{
+		while (!fin.eof())
+		{
+			std::string licence_plate;
+			std::getline(fin, licence_plate,':');
+			cout << licence_plate << "\t";
+			const int SIZE = 1024 * 500;
+			char all_crimes[SIZE];
+			fin.getline(all_crimes,SIZE);
+			cout << all_crimes << endl;
+			const char delimetrs[] = ",";
+			for (char* pch = strtok(all_crimes, delimetrs); pch; pch = strtok(NULL, delimetrs))
+			{
+				Crime crime(0,"");
+				std::stringstream stream(pch);
+				stream >> crime;
+				base[licence_plate].push_back(crime);
+			}
+		}
+	
+	}
+	else
+	{
+		std::cerr << "Error: File not found" << endl;
+	}
+		
+	fin.close();
+	return base;
 }
 
 void read(const std::string& filename)
@@ -115,7 +165,7 @@ void read(const std::string& filename)
 }
 
 //#define HOME_WORK
-
+//#define INIT_BASE
 void main()
 {
 	system("chcp 1251> NUL");
@@ -232,17 +282,21 @@ void main()
 //cout << "Данные успешно сохранены в файл!" << filename << endl;  
 #endif // HOME_WORK
 
+#ifdef INIT_BASE 
+std::map<std::string, std::list<Crime>> base =
+{
+	{"а777аа",{Crime(4,"ул. Ленина "),Crime(5,"ул. Ленина"),Crime(7,"ул. Энтузиастов"),Crime(8,"ул. Энтузиастов")}},
+	{"а123bb",{Crime(2,"ул. Пролетарская "),Crime(3,"ул. Ватутина")}},
+	{"а001eg",{Crime(5,"ул. Октябрьская "),Crime(5,"ул. Октябрьская"),Crime(7,"ул. космическая"),Crime(7,"ул. Энтузиастов")}},
 
-	std::map<std::string, std::list<Crime>> base =
-	{
-		{"а777аа",{Crime(4,"ул. Ленина "),Crime(5,"ул. Ленина"),Crime(7,"ул. Энтузиастов"),Crime(8,"ул. Энтузиастов")}},
-		{"а123bb",{Crime(2,"ул. Пролетарская "),Crime(3,"ул. Ватутина")}},
-		{"а001eg",{Crime(5,"ул. Октябрьская "),Crime(5,"ул. Октябрьская"),Crime(7,"ул. космическая"),Crime(7,"ул. Энтузиастов")}},
-	
-	};
-	//print(base);
-	//save(base, "base.txt");
-	read("base.txt");
+};
+print(base);
+save(base, "base.txt");
+//read("base.txt");
 
+#endif // INIT_BASE 
+
+std::map<std::string, std::list<Crime>> base = load("base.txt");
+print(base);
 	return;
 }

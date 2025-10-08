@@ -23,6 +23,8 @@ const std::map<int, std::string> VIOLATIONS =
 	{7,"Езда в нетрезвом состоянии"},
 	{8,"Оскорбление офицера"},
 };
+class Crime;
+std::stringstream& operator>>(std::stringstream& ifs, Crime& obj);
 //Конкретное правонарушение
 class Crime
 {
@@ -54,6 +56,17 @@ public:
 	{
 		set_violation(violation);
 		set_place(place);
+	}
+	explicit Crime(const std::string& str)
+	{
+		/*char buffer[1024] = {};
+		strcpy(buffer, str.c_str());
+		for (char* pch = strtok(buffer, " "); pch; pch = strtok(NULL, " "))
+		{
+
+		}*/
+		std::stringstream stream (str);
+		stream >> *this;
 	}
 
 };
@@ -128,10 +141,11 @@ std::map<std::string, std::list<Crime>>load(const std::string& filename)
 			const char delimetrs[] = ",";
 			for (char* pch = strtok(all_crimes, delimetrs); pch; pch = strtok(NULL, delimetrs))
 			{
-				Crime crime(0,"");
-				std::stringstream stream(pch);
-				stream >> crime;
-				base[licence_plate].push_back(crime);
+				//Crime crime(0,"");
+				//std::stringstream stream(pch);
+				//stream >> crime;
+				//base[licence_plate].push_back(crime);
+				base[licence_plate].push_back(Crime(pch));
 			}
 		}
 	

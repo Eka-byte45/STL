@@ -95,6 +95,25 @@ void save(const std::map<std::string, std::list<Crime>>& base, const std::string
 		
 }
 
+void read(const std::string& filename)
+{
+	std::ifstream fine(filename);
+	if (!fine.is_open())
+	{
+		std::cerr<<"Ошибка открытия файла."<<std::endl;
+		return;
+	}
+	std::string str;
+	while(!fine.eof())
+	{
+		str = "";
+		getline(fine, str);
+		cout << str << endl;
+	}
+	fine.close();
+	return;
+}
+
 //#define HOME_WORK
 
 void main()
@@ -221,9 +240,9 @@ void main()
 		{"а001eg",{Crime(5,"ул. Октябрьская "),Crime(5,"ул. Октябрьская"),Crime(7,"ул. космическая"),Crime(7,"ул. Энтузиастов")}},
 	
 	};
-	print(base);
-	save(base, "base.txt");
-
+	//print(base);
+	//save(base, "base.txt");
+	read("base.txt");
 
 	return;
 }

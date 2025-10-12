@@ -1,4 +1,6 @@
-﻿#include<iostream>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include <Windows.h>
+#include<iostream>
 #include<map>
 #include<list>
 #include<string>
@@ -92,6 +94,12 @@ public:
 		set_place(place);
 		set_time(time);
 	}
+	Crime(int violation, const std::string& place, time_t time)
+	{
+		set_violation(violation);
+		set_place(place);
+		set_time(time);
+	}
 	explicit Crime(const std::string& str)
 	{
 		/*char buffer[1024] = {};
@@ -103,6 +111,7 @@ public:
 		std::stringstream stream (str);
 		stream >> *this;
 	}
+
 
 };
 std::ostream& operator<<(std::ostream& os, const Crime& obj)
@@ -162,6 +171,30 @@ void save(const std::map<std::string, std::list<Crime>>& base, const std::string
 	system(cmd.c_str());
 		
 }
+void add_crime(std::map<std::string, std::list<Crime>>& base)
+{
+	std::string licence_plate;
+	std::string place;
+	cout << "Введите номер автомобиля: ";
+	SetConsoleCP(1251);
+	cin >> licence_plate;
+	SetConsoleCP(866);
+
+	cout << "Ведите место происшествия: "; 
+	cin.ignore();
+	cin.clear();
+	SetConsoleCP(1251);
+	std::getline(cin, place);
+	SetConsoleCP(866);
+	for (std::pair<int, std::string> violation : VIOLATIONS)
+	{
+		cout << violation.first << "\t" << violation.second << endl;
+	}
+	int number;
+	cout << "Введите номер статьи: "; cin >> number;
+	base[licence_plate].push_back(Crime(number, place, time(NULL)));
+}
+
 //ДЗ
 //void save(const std::map<std::string, std::list<Crime>>& base, const std::string& filename)
 //{
@@ -203,11 +236,11 @@ std::map<std::string, std::list<Crime>>load(const std::string& filename)
 		{
 			std::string licence_plate;
 			std::getline(fin, licence_plate,':');
-			cout << licence_plate << "\t";
+			//cout << licence_plate << "\t";
 			const int SIZE = 1024 * 500;
 			char all_crimes[SIZE];
 			fin.getline(all_crimes,SIZE);
-			cout << all_crimes << endl;
+			//cout << all_crimes << endl;
 			const char delimetrs[] = ",";
 			for (char* pch = strtok(all_crimes, delimetrs); pch; pch = strtok(NULL, delimetrs))
 			{
@@ -228,7 +261,53 @@ std::map<std::string, std::list<Crime>>load(const std::string& filename)
 	fin.close();
 	return base;
 }
+void print_range(std::map<std::string, std::list<Crime>>& base)
+{
+	std::string first, last;
+	cout << "Введите начальный номер: ";
+	SetConsoleCP(1251);
+	cin >> first;
+	SetConsoleCP(866);
+	cout << "Введите конечный номер: "; 
+	SetConsoleCP(1251);
 
+	cin >> last;
+	SetConsoleCP(866);
+	for (std::map<std::string, std::list<Crime>>::iterator plate = base.lower_bound(first); plate != base.upper_bound(last); ++plate)
+	{
+		cout << plate->first << ":\n";
+		for (std::list<Crime>::iterator crime = plate->second.begin(); crime != plate->second.end(); ++crime)
+		{
+			cout << "\t" << *crime << endl;
+		}
+		cout << delimetr << endl;
+	}
+}
+void menu(std::map<std::string, std::list<Crime>>& base)
+{
+	int var;
+	do
+	{
+		cout << "1. Полный вывод Базы;" << endl;
+		cout << "2. Сохранить;" << endl;
+		cout << "3. Загрузить;" << endl;
+		cout << "4. Добавить нарушение;" << endl;
+		cout << "5. Вывод диапазона номеров;" << endl;
+		cout << "0. Выход;" << endl;
+
+		cin >> var;
+		system("CLS");
+		switch (var)
+		{
+		case 1:print(base); break;
+		case 2:save(base, "base.txt"); break;
+		case 3:base = load("base.txt"); break;
+		case 4:add_crime(base); break;
+		case 5:print_range(base); break;
+		default: std::cerr << "Error: Нажимайте,пожалуйста, на кнопки внимательнее!" << endl;
+		}
+	} while (var);
+}
 //ДЗ
 //void read(const std::string& filename)
 //{
@@ -249,10 +328,11 @@ std::map<std::string, std::list<Crime>>load(const std::string& filename)
 //	return;
 //}
 
+
 //#define HOME_WORK
 //#define INIT_BASE
 //#define INIT_BASE2
-#define LOAD_CHECK
+//#define LOAD_CHECK
 void main()
 {
 	system("chcp 1251> NUL");
@@ -401,8 +481,11 @@ save(base, "base.txt");
 #ifdef LOAD_CHECK 
 std::map<std::string, std::list<Crime>> base = load("base.txt");
 print(base);
+
 #endif // LOAD_CHECK 
 
+std::map<std::string, std::list<Crime>> base=load("base.txt");
+menu(base);
 
 	return;
 }
